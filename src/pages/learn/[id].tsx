@@ -3,7 +3,7 @@ import { Flex, Text, Card, CardContent, Spacer, Block } from "vcc-ui";
 import Image from "next/image";
 
 import { ICar } from "../../types/car";
-import { readJSONFile } from "../../utils";
+import { getCars, filterCarById } from "../../utils";
 
 export default function Learn({data}: {data: ICar}){
   return (
@@ -23,9 +23,9 @@ export default function Learn({data}: {data: ICar}){
 }
 
 export const getStaticPaths: GetStaticPaths = async () =>  {
-  const getCars: ICar[] = await readJSONFile('/public/api/cars.json');
+  const cars: ICar[] = await getCars();
 
-  const paths = getCars.map((car) => ({
+  const paths = cars.map((car) => ({
     params: { id: car.id },
   }))
 
@@ -36,8 +36,8 @@ export const getStaticPaths: GetStaticPaths = async () =>  {
 }
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
-  const getCars: ICar[] = await readJSONFile('/public/api/cars.json');
-  const filterByParams = getCars.filter(car => car.id === params?.id)[0];
+  const cars: ICar[] = await getCars();
+  const filterByParams = filterCarById(cars, params?.id);
 
   return {
     props: {

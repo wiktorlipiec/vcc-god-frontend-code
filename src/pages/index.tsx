@@ -1,7 +1,8 @@
 import { useCallback, useEffect, useState } from "react";
+import { GetStaticProps } from 'next';
 
 import { Slider, Card, Select } from "../components";
-import { readJSONFile } from "../utils";
+import { getCars } from "../utils";
 
 import { ICar } from "../types/car";
 
@@ -41,14 +42,14 @@ export default function Home({ data }: IHomeProps) {
   )
 }
 
-export async function getStaticProps() {
+export const getStaticProps: GetStaticProps = async () => {
   //When we have API or Dev mode
-  // const getCars: ICar[] = await httpGetRequest('http://localhost:3000/api/cars.json');
-  const getCars: ICar[] = await readJSONFile('/public/api/cars.json');
+  // const cars: ICar[] = await httpGetRequest('http://localhost:3000/api/cars.json');
+  const cars: ICar[] = await getCars()
 
   return {
   props: {
-    data: getCars
+    data: cars
   }
  } 
 };

@@ -1,6 +1,6 @@
 import React from 'react';
-import { Flex, Logo, Block } from "vcc-ui";
-import Link from 'next/link';
+
+import { Header } from '../Header';
 
 interface ILayoutProps {
   children: React.ReactChild;
@@ -8,13 +8,7 @@ interface ILayoutProps {
 
 export const Layout = ({children}:ILayoutProps) => (
   <div>
-    <Block as="header" extend={{marginBottom: 20, borderBottom: '1px solid black'}}>
-      <Flex extend={{ padding: 16 }}>
-        <Link href={'/'}>
-          <Logo type="spreadmark" alt="Volvo logo" height={16} />
-        </Link>
-      </Flex>
-    </Block>
+    <Header />
     {children}
   </div>
 );

@@ -1,8 +1,9 @@
-import "../../public/css/styles.css";
 import React from "react";
 import type { AppProps } from 'next/app';
 import { StyleProvider, ThemePicker } from 'vcc-ui';
+
 import { Layout } from "../components/Layout";
+import "../../public/css/styles.css";
 
 function VolvoApp({ Component, pageProps }: AppProps) {
   return (
@@ -17,6 +18,5 @@ function VolvoApp({ Component, pageProps }: AppProps) {
     </React.StrictMode>
   );
 }
-
 
 export default VolvoApp;
